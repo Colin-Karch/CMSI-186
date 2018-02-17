@@ -51,7 +51,7 @@ public class CalendarStuff {
    private static final int JULY       = JUNE      + 1;
    private static final int AUGUST     = JULY      + 1;
    private static final int SEPTEMBER  = AUGUST    + 1;
-   private static final int OCOTBER    = SEPTEMBER + 1;
+   private static final int OCTOBER    = SEPTEMBER + 1;
    private static final int NOVEMBER   = OCTOBER   + 1;
    private static final int DECEMBER   = NOVEMBER  + 1;
 
@@ -67,7 +67,7 @@ public class CalendarStuff {
   /**
    * The constructor for the class
    */
-   public CalendarStuffEmpty() {
+   public void CalendarStuffEmpty() {
       System.out.println( "Constructor called..." );  // replace this with the actual code
    }
 
@@ -78,11 +78,11 @@ public class CalendarStuff {
    * @return         boolean which is true if the parameter is a leap year
    */
    public static boolean isLeapYear( long year ) {
-     if ((year % 4 == 0 && (year % 100 != 0 || year % 400 == 0) {
+     if ((year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))) {
        return true;
      } else {
       return false;
-     } 
+     }
    }
 
   /**
@@ -94,7 +94,7 @@ public class CalendarStuff {
    *         be decremented to make the appropriate index value
    */
    public static long daysInMonth( long month, long year ) {
-     if (month == 1 || month == 3 || month == 5 || month = 7 || month == 8 || month == 10 || month == 12) {
+     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
        return 31;
      }
      if (month == 4 || month == 6 || month == 9 || month == 11) {
@@ -121,11 +121,12 @@ public class CalendarStuff {
    * @return          boolean which is true if the two dates are exactly the same
    */
    public static boolean dateEquals( long month1, long day1, long year1, long month2, long day2, long year2 ) {
-     if ((month1 == month2) && (day1 == day2) && (year1 == year2));
-      return true;
-     } else {
-        return false;
-     }
+        if ((month1 == month2) && (day1 == day2) && (year1 == year2)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 
@@ -140,27 +141,28 @@ public class CalendarStuff {
    * @return          int    -1/0/+1 if first date is less than/equal to/greater than second
    */
    public static int compareDate( long month1, long day1, long year1, long month2, long day2, long year2 ) {
-      if (year1 > year2) {
-        return -1;
-      } else if (year1 < year2) {
-          return 1;
-      } else {
-        if (month1 > month2) {
-          return -1;
+        if (year1 > year2) {
+            return -1;
+        } else if (year1 < year2) {
+            return 1;
+        } else { // If years are equal
+            if (month1 > month2) {
+                return -1;
+            } else if (month1 < month2) {
+                return 1;
+            } else { // If years and months are equal
+                if(day1 > day2) {
+                    return 1;
+                } else if(day1 < day2) {
+                    return -1;
+                } else {
+                    return 0; // they are the same date
+                }
+            }
         }
-      } else if (month1 < month2){
-          return 1;
-      } else {
-        if(day1 > day2) {
-          return 1;
-        }
-      } else {
-          return 0;
-      }
-   }
-}
-   
-   
+    }
+
+
 
   /**
    * A method to return whether a date is a valid date
@@ -171,136 +173,160 @@ public class CalendarStuff {
    * notes: remember that the month and day variables are used as indices, and so must
    *         be decremented to make the appropriate index value
    */
-   public static boolean isValidDate( long month, long day, long year ) {
-     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day <= 31) {
-       return true;
-     }
-     if (month == 4 || month == 6 || month == 9 || month 11) && (day <= 30) {
-       return true
-     }
-     if (((month == 2) && (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) && (day == 29){
-       return true;
-     } else if ((month == 2) && (day <= 28)) {
-        return true;
-     } else {
-        return false;
-     }
-  }
-
-
-
-  /**
-   * A method to return a string version of the month name
-   * @param    month long   containing month number, starting with "1" for "January"
-   * @return         String containing the string value of the month (no spaces)
-   */
-   public static String toMonthString( int month ) {
-      case 0:
-        return "Janurary";
-      case 1:
-        return "February";
-      case 2:
-        return "March";
-      case 3:
-        return "April";
-      case 4:
-        return "May";
-      case 5:
-        return "June";
-      case 6:
-        return "July" ;
-      case 7:
-        return "August";
-      case 8:
-        return "September";
-      case 9:
-        return "October";
-      case 10:
-        return "November";
-      case 11:
-        return "December";
-
-         default: throw new IllegalArgumentException( "Illegal month value given to 'toMonthString()'." );
-      }
-   }
-
-  /**
-   * A method to return a string version of the day of the week name
-   * @param    day int    containing day number, starting with "1" for "Sunday"
-   * @return       String containing the string value of the day (no spaces)
-   */
-   public static String toDayOfWeekString( int day ) {
-      switch( day - 1 ) {
-        case 0:
-          return "Sunday";
-        case 1:
-          return "Monday";
-        case 2:
-          return "Tuesday";
-        case 3:
-          return "Wednesday";
-        case 4:
-          return "Thursday";
-        case 5:
-          return "Friday";
-        case 6:
-          return "Saturday";
-
-         default       : throw new IllegalArgumentException( "Illegal day value given to 'toDayOfWeekString()'." );
-      }
-   }
-
-  /**
-   * A method to return a count of the total number of days between two valid dates
-   * @param    month1 long   containing month number, starting with "1" for "January"
-   * @param    day1   long   containing day number
-   * @param    year1  long   containing four-digit year
-   * @param    month2 long   containing month number, starting with "1" for "January"
-   * @param    day2   long   containing day number
-   * @param    year2  long   containing four-digit year
-   * @return          long   count of total number of days
-   */
-   public static long daysBetween( long month1, long day1, long year1, long month2, long day2, long year2 ) {
-      long dayCount = 0;
-
-      while ( day 1 > 1 ) {
-        day1 -= 1;
-        dayCount -= 1;
-      }
-      while ( year 1 < year 2 ) {
-        if ((year2 % 4 == 0 && (year2 % 100 != 0 || year % 400 == 0) {
-           dayCount += 366;
-        } else {
-           dayCount += 365;
+    public static boolean isValidDate( long month, long day, long year ) {
+        int integerMonth = (int) month;
+        switch(integerMonth) {
+            case 1:
+            case 3:
+            case 5:
+            case 7:
+            case 8:
+            case 10:
+            case 12:
+                if(day <= 31) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                if(day <= 30) {
+                    return true;
+                } else {
+                    return false;
+                }
+            case 2:
+                if(isLeapYear(year)) {
+                    if(day <= 29) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else if(day <= 28) {
+                    return true;
+                } else {
+                    return false;
+                }
         }
+        return false; // Default to false ??
+    }
 
-        year1 += 1;
+
+
+    /**
+    * A method to return a string version of the month name
+    * @param    month long   containing month number, starting with "1" for "January"
+    * @return         String containing the string value of the month (no spaces)
+    */
+    public static String toMonthString(int month) {
+        switch(month) {
+            case 0:
+                return "Janurary";
+            case 1:
+                return "February";
+            case 2:
+                return "March";
+            case 3:
+                return "April";
+            case 4:
+                return "May";
+            case 5:
+                return "June";
+            case 6:
+                return "July" ;
+            case 7:
+                return "August";
+            case 8:
+                return "September";
+            case 9:
+                return "October";
+            case 10:
+                return "November";
+            case 11:
+                return "December";
+
+            default: throw new IllegalArgumentException( "Illegal month value given to 'toMonthString()'." );
       }
-      while ( month1 < month2 ) {
-         if (month1 == 1 || month1 == 3 || month1 == 5 || month1 == 7 || month1 == 8 || month1 == 10 || month1 == 12) {
-            dayCount += 31;
-         } else if (month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) {
-            dayCount += 30;
-         }
-         month1 += 1;
-      }
-      while ( month1 > month2 ) {
-         if (month1 == 1 || month1 == 3 || month1 == 5 || month1 == 7 || month1 == 8 || month1 == 10 || month1 == 12) {
-            dayCount -= 31;
-         } else if (month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) {
-            dayCount -= 30;
-         } else if ((month1 == 2) && (month1 == 2 && ( year1 % 4 == 0) && (year1 % 100 != 0) || (year1 % 400 == 0))) {
-            dayCount -= 29;
-         } else if ((month1 == 2)) {
-            dayCount -= 28;
-         }
-         month1 -= 1;
-      }
-      while ( day 1 < day 2 ) {
-        day 1 += 1;
-        dayCount += 1;
-      }
-            return dayCount;
    }
+
+    /**
+    * A method to return a string version of the day of the week name
+    * @param    day int    containing day number, starting with "1" for "Sunday"
+    * @return       String containing the string value of the day (no spaces)
+    */
+    public static String toDayOfWeekString( int day ) {
+        switch( day - 1 ) {
+            case 0:
+                return "Sunday";
+            case 1:
+                return "Monday";
+            case 2:
+                return "Tuesday";
+            case 3:
+                return "Wednesday";
+            case 4:
+                return "Thursday";
+            case 5:
+                return "Friday";
+            case 6:
+                return "Saturday";
+
+            default: throw new IllegalArgumentException( "Illegal day value given to 'toDayOfWeekString()'." );
+        }
+    }
+
+    /**
+    * A method to return a count of the total number of days between two valid dates
+    * @param    month1 long   containing month number, starting with "1" for "January"
+    * @param    day1   long   containing day number
+    * @param    year1  long   containing four-digit year
+    * @param    month2 long   containing month number, starting with "1" for "January"
+    * @param    day2   long   containing day number
+    * @param    year2  long   containing four-digit year
+    * @return          long   count of total number of days
+    */
+    public static long daysBetween( long month1, long day1, long year1, long month2, long day2, long year2 ) {
+        long dayCount = 0;
+
+        while (day1 > 1) {
+            day1 -= 1;
+            dayCount -= 1;
+        }
+        while ( year1 < year2 ) {
+            if ((year2 % 4 == 0 && (year2 % 100 != 0 || year2 % 400 == 0))) {
+                dayCount += 366;
+            } else {
+                dayCount += 365;
+            }
+            year1 += 1;
+        }
+        while ( month1 < month2 ) {
+            if (month1 == 1 || month1 == 3 || month1 == 5 || month1 == 7 || month1 == 8 || month1 == 10 || month1 == 12) {
+                dayCount += 31;
+            } else if (month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) {
+                dayCount += 30;
+            }
+            month1 += 1;
+        }
+        while ( month1 > month2 ) {
+            if (month1 == 1 || month1 == 3 || month1 == 5 || month1 == 7 || month1 == 8 || month1 == 10 || month1 == 12) {
+                dayCount -= 31;
+            } else if (month1 == 4 || month1 == 6 || month1 == 9 || month1 == 11) {
+                dayCount -= 30;
+            } else if ((month1 == 2) && (month1 == 2 && ( year1 % 4 == 0) && (year1 % 100 != 0) || (year1 % 400 == 0))) {
+                dayCount -= 29;
+            } else if ((month1 == 2)) {
+                dayCount -= 28;
+            }
+            month1 -= 1;
+        }
+        while ( day1 < day2 ) {
+            day1 += 1;
+            dayCount += 1;
+        }
+        return dayCount;
+    }
 
 }
